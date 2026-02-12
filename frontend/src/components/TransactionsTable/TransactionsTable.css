@@ -1,0 +1,203 @@
+.transactions-section {
+  background: #FFF6E5;
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid #D4AF37;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #4A2C1D;
+}
+
+.title-icon {
+  width: 36px;
+  height: 36px;
+  background: #1F5F3B;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.section-filters {
+  display: flex;
+  gap: 8px;
+}
+
+.filter-btn {
+  padding: 8px 16px;
+  border: 1px solid #D4AF37;
+  background: #FFF6E5;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover {
+  background: #FFF6E5;
+  opacity: 0.9;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th {
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+tbody td {
+  padding: 16px;
+  font-size: 14px;
+  color: #4A2C1D;
+  border-bottom: 1px solid #D4AF37;
+}
+
+tbody tr:hover {
+  background: #FFF6E5;
+}
+
+.order-id {
+  font-weight: 600;
+  color: #4A2C1D;
+}
+
+.type-badge {
+  display: inline-flex;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.type-badge.sale {
+  background: #FFF6E5;
+  color: #1F5F3B;
+}
+
+.type-badge.purchase {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.status-badge::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.status-badge.completed::before {
+  background: #22c55e;
+}
+
+.status-badge.pending::before {
+  background: #eab308;
+}
+
+.status-badge.completed {
+  color: #4CAF50;
+}
+
+.status-badge.pending {
+  color: #ca8a04;
+}
+
+.action-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  transition: all 0.2s;
+}
+
+.action-btn:hover {
+  background: #FFF6E5;
+  color: #4A2C1D;
+}
+
+.table-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #f3f4f6;
+}
+
+.showing-text {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.pagination {
+  display: flex;
+  gap: 4px;
+}
+
+.page-btn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #D4AF37;
+  background: #FFF6E5;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.page-btn:hover {
+  background: #FFF6E5;
+}
+
+.page-btn.active {
+  background: #1F5F3B;
+  color: white;
+  border-color: #1F5F3B;
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { 
   LayoutDashboard, 
   Package, 
@@ -13,14 +14,19 @@ import {
 import './Sidebar.css';
 
 const Sidebar = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  
   const menuItems = [
-    { icon: LayoutDashboard, label: 'Dashboard', active: true },
-    { icon: Package, label: 'Products', hasSubmenu: true },
+    { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
+    { icon: Package, label: 'Products', path: '/products', hasSubmenu: true },
     { icon: Users, label: 'People', hasSubmenu: true },
     { icon: ShoppingCart, label: 'Sale', hasSubmenu: true },
     { icon: Warehouse, label: 'Warehouse', hasSubmenu: true },
     { icon: FileText, label: 'Purchase', hasSubmenu: true },
   ];
+  
+  const isActive = (path) => location.pathname === path;
 
   return (
     <aside className="sidebar">
@@ -39,7 +45,8 @@ const Sidebar = () => {
         {menuItems.map((item, index) => (
           <div 
             key={index} 
-            className={`menu-item ${item.active ? 'active' : ''}`}
+            className={`menu-item ${item.path && isActive(item.path) ? 'active' : ''}`}
+            onClick={() => item.path && navigate(item.path)}
           >
             <item.icon />
             <span className="menu-text">{item.label}</span>

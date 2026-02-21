@@ -4,6 +4,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import Products from './pages/Products/Products';
 import CreateProduct from './pages/CreateProduct/CreateProduct';
 import POS from './pages/POS/POS';
+import Menu from './pages/Menu/Menu';
 import Login from './pages/Login/Login';
 import './App.css';
 
@@ -30,6 +31,10 @@ function App() {
           <Route 
             path="/pos" 
             element={isAuthenticated ? <POS /> : <Navigate to="/login" />} 
+          />
+          <Route 
+            path="/menu" 
+            element={isAuthenticated ? <Menu /> : <Navigate to="/login" />} 
           />
           <Route path="/" element={<Navigate to="/dashboard" />} />
         </Routes>

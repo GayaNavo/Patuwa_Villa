@@ -1,17 +1,58 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { ClipboardList, ShoppingCart, Trash2, Plus, Minus, X } from 'lucide-react';
+import { ClipboardList, ShoppingCart, Trash2, Plus, Minus, X, Radio } from 'lucide-react';
 import Header from '../../components/Header/Header';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import PlacedOrdersModal from '../../components/PlacedOrdersModal/PlacedOrdersModal';
+import LiveOrdersPanel from '../../components/LiveOrdersPanel/LiveOrdersPanel';
 import './POS.css';
 
 const POS = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [showPlacedOrders, setShowPlacedOrders] = useState(false);
+  const [showLiveOrders, setShowLiveOrders] = useState(false);
   const [cart, setCart] = useState([
     { id: 1, name: 'Chicken Fried Rice', variant: 'Regular • Extra Spice', qty: 2, price: 1400 },
     { id: 2, name: 'Coca Cola 500ml', variant: 'Chilled', qty: 1, price: 250 },
+  ]);
+
+  // Sample live orders data
+  const [liveOrders, setLiveOrders] = useState([
+    {
+      id: 1,
+      tableName: 'Table No 3',
+      total: 1000.00,
+      status: 'pending',
+      time: '03:49 PM',
+      orderType: 'dine in',
+      items: [
+        { name: 'Cheese', qty: 1, price: 1000 }
+      ]
+    },
+    {
+      id: 2,
+      tableName: 'Table No 5',
+      total: 2500.00,
+      status: 'preparing',
+      time: '03:45 PM',
+      orderType: 'dine in',
+      items: [
+        { name: 'Chicken Biriyani', qty: 2, price: 1700 },
+        { name: 'Coca Cola', qty: 2, price: 500 },
+        { name: 'Garlic Bread', qty: 1, price: 300 }
+      ]
+    },
+    {
+      id: 3,
+      tableName: 'Table No 1',
+      total: 850.00,
+      status: 'ready',
+      time: '03:30 PM',
+      orderType: 'takeaway',
+      items: [
+        { name: 'Vegetable Fried Rice', qty: 1, price: 850 }
+      ]
+    }
   ]);
 
   useEffect(() => {
@@ -23,6 +64,10 @@ const POS = () => {
   const handleCloseModal = () => {
     setShowPlacedOrders(false);
     setSearchParams({});
+  };
+
+  const handleClearAllLiveOrders = () => {
+    setLiveOrders([]);
   };
 
   const categories = ['All', 'Rice', 'Noodles', 'Beverages', 'Desserts'];
@@ -67,13 +112,25 @@ const POS = () => {
           <div className="pos-left">
             <div className="pos-header">
               <h2>POS Terminal</h2>
-              <button 
-                className="placed-orders-btn"
-                onClick={() => setShowPlacedOrders(true)}
-              >
-                <ClipboardList size={18} />
-                <span>Placed Orders</span>
-              </button>
+              <div className="header-actions">
+                <button 
+                  className="live-orders-toggle-btn"
+                  onClick={() => setShowLiveOrders(true)}
+                >
+                  <Radio size={18} />
+                  <span>Live Orders</span>
+                  {liveOrders.length > 0 && (
+                    <span className="live-badge">{liveOrders.length}</span>
+                  )}
+                </button>
+                <button 
+                  className="placed-orders-btn"
+                  onClick={() => setShowPlacedOrders(true)}
+                >
+                  <ClipboardList size={18} />
+                  <span>Placed Orders</span>
+                </button>
+              </div>
             </div>
             
             <div className="categories">
@@ -151,6 +208,13 @@ const POS = () => {
       {showPlacedOrders && (
         <PlacedOrdersModal onClose={handleCloseModal} />
       )}
+
+      <LiveOrdersPanel 
+        isOpen={showLiveOrders}
+        onClose={() => setShowLiveOrders(false)}
+        orders={liveOrders}
+        onClearAll={handleClearAllLiveOrders}
+      />
     </div>
   );
 };

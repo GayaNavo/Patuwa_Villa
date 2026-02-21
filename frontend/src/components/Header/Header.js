@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, Maximize2, Bell, Calculator, ClipboardList, LayoutGrid } from 'lucide-react';
+import { Search, Maximize2, Bell, Calculator, ClipboardList, LayoutGrid, BookOpen } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './Header.css';
 
@@ -45,10 +45,16 @@ const Header = () => {
           <span className="notification-badge">2</span>
         </button>
         {!isPOS && (
-          <button className="pos-btn" onClick={() => navigate('/pos')}>
-            <Calculator size={18} />
-            <span>POS Terminal</span>
-          </button>
+          <>
+            <button className="menu-nav-btn" onClick={() => navigate('/menu')}>
+              <BookOpen size={18} />
+              <span>Menu</span>
+            </button>
+            <button className="pos-btn" onClick={() => navigate('/pos')}>
+              <Calculator size={18} />
+              <span>POS Terminal</span>
+            </button>
+          </>
         )}
         <div className="user-profile">
           <div className="user-info">

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Dashboard from './pages/Dashboard/Dashboard';
 import Products from './pages/Products/Products';
 import CreateProduct from './pages/CreateProduct/CreateProduct';
+import POS from './pages/POS/POS';
 import Login from './pages/Login/Login';
 import './App.css';
 
@@ -25,6 +26,10 @@ function App() {
           <Route 
             path="/products/create" 
             element={isAuthenticated ? <CreateProduct /> : <Navigate to="/login" />} 
+          />
+          <Route 
+            path="/pos" 
+            element={isAuthenticated ? <POS /> : <Navigate to="/login" />} 
           />
           <Route path="/" element={<Navigate to="/dashboard" />} />
         </Routes>
